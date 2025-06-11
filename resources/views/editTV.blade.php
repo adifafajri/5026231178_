@@ -11,7 +11,7 @@
 	<h2><a href="https://www.malasngoding.com">www.malasngoding.com</a></h2>
 	<h3>Edit TV</h3>
 
-	<a href="/kue"> Kembali</a>
+	<a href="/tv"> Kembali</a>
 
 	<br/>
 	<br/>

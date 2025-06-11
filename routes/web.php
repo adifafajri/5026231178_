@@ -135,3 +135,19 @@ Route::get('/tv/hapusTV/{id}', [PegawaiDBController::class, 'hapusTV']);
 
 // pertemuan 14 (pencarian, filter, pagination)
 Route::get('/tv/cariTV',[PegawaiDBController::class,'cariTV']);
+
+
+//========================
+
+// Latihan UAS: karyawan
+//route CRUD
+Route::get('/karyawan', [PegawaiDBController::class, 'index3']);
+//route CRUD
+Route::get('/karyawan/tambahKaryawan', [PegawaiDBController::class, 'tambahKaryawan']);
+Route::post('/karyawan/storeKaryawan', [PegawaiDBController::class, 'storeKaryawan']);
+Route::get('/karyawan/editKaryawan/{id}', [PegawaiDBController::class, 'editKaryawan']);
+Route::post('/karyawan/updateKaryawan', [PegawaiDBController::class, 'updateKaryawan']);
+Route::get('/karyawan/hapusKaryawan/{id}', [PegawaiDBController::class, 'hapusKaryawan']);
+
+// pertemuan 14 (pencarian, filter, pagination)
+Route::get('/karyawan/cariKaryawan',[PegawaiDBController::class,'cariKaryawan']);

@@ -113,7 +113,90 @@ class PegawaiDBController extends Controller
 //========================================================================
 
 
-        //CRUD : TV
+        //CRUD UAS : Karyawan
+    public function index3()
+    {
+            $karyawan = DB::table('karyawan')->paginate(10);
+            return view('index3',['karyawan' => $karyawan]);
+
+    }
+
+
+	public function tambahKaryawan()
+	{
+
+		// memanggil view tambah
+		return view('tambahkaryawan');
+
+	}
+
+
+	public function storeKaryawan(Request $request)
+	{
+
+		 	DB::table('karyawan')->insert([
+			'kodepegawai' => $request->kodepegawai,
+			'namalengkap' => $request->namalengkap,
+			'divisi' => $request->divisi,
+			'departemen' => $request->departemen
+		]);
+
+		return redirect('/karyawan');
+    }
+
+	public function editKaryawan($id)
+	{
+
+		$karyawan = DB::table('karyawan')
+            ->where('kodepegawai',$id)
+            ->get();
+
+
+		return view('editKaryawan',['karyawan' => $karyawan]);
+
+	}
+
+
+	public function updateKaryawan(Request $request)
+	{
+
+		DB::table('karyawan')->where('kodepegawai',$request->id)->update([
+			'namalengkap' => $request->namalengkap,
+			'departemen' => $request->departemen,
+			'divisi' => $request->divisi,
+		]);
+
+		return redirect('/karyawan');
+	}
+
+
+	public function hapusKaryawan($ID)
+	{
+
+		DB::table('karyawan')->where('kodepegawai',$ID)->delete();
+
+
+		return redirect('/karyawan');
+	}
+
+    public function cariKaryawan(Request $request)
+	{
+
+		$cariKaryawan = $request->cariKaryawan;
+
+
+		$karyawan = DB::table('karyawan')
+		->where('namalengkap','like',"%".$cariKaryawan."%")
+		->paginate();
+
+
+		return view('index3',['karyawan' => $karyawan]);
+
+	}
+
+    //========================================================================
+
+    //CRUD : TV
     public function index2()
     {
             $TV = DB::table('TV')->paginate(10);
@@ -121,7 +204,7 @@ class PegawaiDBController extends Controller
 
     }
 
-	// method untuk menampilkan view form tambah kue
+
 	public function tambahTV()
 	{
 
@@ -130,71 +213,73 @@ class PegawaiDBController extends Controller
 
 	}
 
-	// method untuk insert data ke table kue
+
 	public function storeTV(Request $request)
 	{
-		// insert data ke table kue
+
 		DB::table('TV')->insert([
 			'merkTV' => $request->merkTV,
 			'hargaTV' => $request->hargaTV,
 			'tersedia' => $request->tersedia,
 			'berat' => $request->berat
 		]);
-		// alihkan halaman ke halaman kue
+
 		return redirect('/tv');
 
 	}
 
-	// method untuk edit data kue
+
 	public function editTV($id)
 	{
-		// mengambil data kue berdasarkan id yang dipilih
+
 		$TV = DB::table('TV')
             ->where('TV_id',$id)
             ->get();
 
-		// passing data kue yang didapat ke view edit.blade.php
+
 		return view('editTV',['TV' => $TV]);
 
 	}
 
-	// update data kue
+
 	public function updateTV(Request $request)
 	{
-		// update data kue
+
 		DB::table('TV')->where('TV_id',$request->id)->update([
 			'merkTV' => $request->merkTV,
 			'hargaTV' => $request->hargaTV,
 			'tersedia' => $request->tersedia,
             'berat' => $request->berat
 		]);
-		// alihkan halaman ke halaman kue
+
 		return redirect('/TV');
 	}
 
-	// method untuk hapus data pegawai
+
 	public function hapusTV($ID)
 	{
-		// menghapus data kue berdasarkan id yang dipilih
+
 		DB::table('TV')->where('tv_id',$ID)->delete();
 
-		// alihkan halaman ke halaman kue
+
 		return redirect('/tv');
 	}
 
     public function cariTV(Request $request)
 	{
-		// menangkap data pencarian
+
 		$cariTV = $request->cariTV;
 
-    		// mengambil data dari table kue sesuai pencarian data
+
 		$TV = DB::table('TV')
 		->where('merkTV','like',"%".$cariTV."%")
 		->paginate();
 
-    		// mengirim data kue ke view index
+
 		return view('index2',['TV' => $TV]);
 
 	}
+
+
 }
 

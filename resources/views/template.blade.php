@@ -11,6 +11,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
         integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
         .jumbotron {
             background-color: #9de2e2;
@@ -39,7 +40,7 @@
                 <a class="nav-link" href="#">EAS</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Latihan 1</a>
+                <a class="nav-link" href="/karyawan">Latihan 1</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">Latihan 2</a>
@@ -52,6 +53,7 @@
     <br>
     <div class="container">
         @yield('content')
+        @yield('scripts')
     </div>
 
 </body>
