@@ -279,7 +279,85 @@ class PegawaiDBController extends Controller
 		return view('index2',['TV' => $TV]);
 
 	}
+    //========================================================================
 
+        public function index4()
+	{
+		$keranjangbelanja = DB::table('keranjangbelanja')->paginate(10);
+		return view('index4',['keranjangbelanja' => $keranjangbelanja]);
+
+	}
+
+	public function tambahBarang()
+	{
+
+		return view('tambahBarang');
+
+	}
+
+	public function storeBarang(Request $request)
+	{
+		DB::table('keranjangbelanja')->insert([
+			'ID' => $request->ID,
+			'KodeBarang' => $request->kodebarang,
+			'Jumlah' => $request->jumlah,
+			'Harga' => $request->harga
+		]);
+		return redirect('/keranjangbelanja');
+	}
+
+	public function editBarang($ID)
+	{
+		$barang = DB::table('keranjangbelanja')
+            ->where('ID', $ID)
+            ->get();
+
+		return view('editBarang',['barang' => $barang]);
+
+	}
+
+	public function updateBarang(Request $request)
+	{
+		DB::table('keranjangbelanja')->where('ID',$request->ID)->update([
+			'KodeBarang' => $request->kodebarang,
+			'Jumlah' => $request->jumlah,
+			'Harga' => $request->harga
+		]);
+		return redirect('/keranjangbelanja');
+	}
+
+	public function hapusBarang($ID)
+	{
+		DB::table('keranjangbelanja')->where('ID',$ID)->delete();
+
+		return redirect('/keranjangbelanja');
+	}
+
+    public function cariBarang(Request $request)
+	{
+		$cariBarang = $request->cariBarang;
+		$barang = DB::table('keranjangbelanja')
+		->where('KodeBarang','like',"%".$cariBarang."%")
+		->paginate();
+
+		return view('d4/index',['keranjangbelanja' => $keranjangbelanja]);
+
+	}
+
+    //========================================================================
+
+    public function index5()
+    {
+        $counter = DB::table('pagecounter')->where('ID', 1)->first();
+        $jumlahpengunjung = 0;
+        if ($counter) {
+            $newjumlah = $counter->Jumlah + 1;
+            DB::table('pagecounter')->where('ID', 1)->update(['Jumlah' => $newjumlah]);
+        }
+
+        $jumlahpengunjung = $newjumlah;
+        return view('index5', ['jumlahpengunjung' => $jumlahpengunjung]);
+    }
 
 }
 

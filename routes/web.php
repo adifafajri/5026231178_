@@ -139,7 +139,7 @@ Route::get('/tv/cariTV',[PegawaiDBController::class,'cariTV']);
 
 //========================
 
-// Latihan UAS: karyawan
+// Latihan UAS 1: karyawan
 //route CRUD
 Route::get('/karyawan', [PegawaiDBController::class, 'index3']);
 //route CRUD
@@ -151,3 +151,22 @@ Route::get('/karyawan/hapusKaryawan/{id}', [PegawaiDBController::class, 'hapusKa
 
 // pertemuan 14 (pencarian, filter, pagination)
 Route::get('/karyawan/cariKaryawan',[PegawaiDBController::class,'cariKaryawan']);
+
+//========================
+
+// Latihan UAS 2: Soal Keranjang Belanja
+
+Route::get('/keranjangbelanja', [PegawaiDBController::class, 'index4']);
+Route::get('/keranjangbelanja/tambahBarang/', [PegawaiDBController::class, 'tambahBarang']);
+Route::post('/keranjangbelanja/storeBarang', [PegawaiDBController::class, 'storeBarang']);
+Route::get('/keranjangbelanja/editBarang/{ID}', [PegawaiDBController::class, 'editBarang']);
+Route::post('/keranjangbelanja/updateBarang', [PegawaiDBController::class, 'updateBarang']);
+Route::get('/keranjangbelanja/hapusBarang/{ID}', [PegawaiDBController::class, 'hapusBarang']);
+
+Route::get('/keranjangbelanja/cariBarang',[PegawaiDBController::class,'cariBarang']);
+
+//========================
+
+// Latihan UAS 3: Soal Page Counter
+//route CRUD
+Route::get('/pagecounter', [PegawaiDBController::class, 'index5']);
