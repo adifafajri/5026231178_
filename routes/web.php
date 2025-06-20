@@ -170,3 +170,16 @@ Route::get('/keranjangbelanja/cariBarang',[PegawaiDBController::class,'cariBaran
 // Latihan UAS 3: Soal Page Counter
 //route CRUD
 Route::get('/pagecounter', [PegawaiDBController::class, 'index5']);
+
+//=========================
+//EAS
+
+Route::get('/eas', [PegawaiDBController::class, 'eas']);
+//route CRUD
+Route::get('/eas/addKaryawan', [PegawaiDBController::class, 'addKaryawan']);
+Route::post('/eas/masukKaryawan', [PegawaiDBController::class, 'masukKaryawan']);
+Route::post('/eas/perbaruiKaryawan', [PegawaiDBController::class, 'perbaruiKaryawan']);
+Route::get('/eas/deleteKaryawan/{id}', [PegawaiDBController::class, 'deleteKaryawan']);
+
+// pertemuan 14 (pencarian, filter, pagination)
+Route::get('/eas/findKaryawan',[PegawaiDBController::class,'findKaryawan']);

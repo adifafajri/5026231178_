@@ -359,5 +359,76 @@ class PegawaiDBController extends Controller
         return view('index5', ['jumlahpengunjung' => $jumlahpengunjung]);
     }
 
+
+//========================================================================
+
+        public function eas()
+    {
+            $newkaryawan = DB::table('newkaryawan')->paginate(10);
+            return view('eas',['newkaryawan' => $newkaryawan]);
+
+    }
+
+
+	public function addKaryawan()
+	{
+
+		// memanggil view tambah
+		return view('addkaryawan');
+
+	}
+
+
+	public function masukKaryawan(Request $request)
+	{
+
+		 	DB::table('newkaryawan')->insert([
+			'NIP' => $request->NIP,
+			'nama' => $request->nama,
+			'pangkat' => $request->pangkat,
+			'gaji' => $request->gaji
+		]);
+
+		return redirect('/eas');
+    }
+
+
+	public function perbaruiKaryawan(Request $request)
+	{
+
+		DB::table('newkaryawan')->where('NIP',$request->id)->update([
+			'nama' => $request->nama,
+			'pangkat' => $request->pangkat,
+			'gaji' => $request->gaji,
+		]);
+
+		return redirect('/eas');
+	}
+
+
+	public function deleteKaryawan($ID)
+	{
+
+		DB::table('newkaryawan')->where('NIP',$ID)->delete();
+
+
+		return redirect('/eas');
+	}
+
+    public function findKaryawan(Request $request)
+	{
+
+		$findKaryawan = $request->findKaryawan;
+
+
+		$newkaryawan = DB::table('newkaryawan')
+		->where('nama','like',"%".$findKaryawan."%")
+		->paginate();
+
+
+		return view('eas',['newkaryawan' => $newkaryawan]);
+
+	}
+
 }
 

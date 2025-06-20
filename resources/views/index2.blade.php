@@ -2,15 +2,20 @@
 
 @section('content')
 
-	<h3>Data TV</h3>
+	<div class="container">
+    <h3>Data TV</h3>
 
-	<a href="/tv/tambahTV" class="btn btn-primary"> + Tambah TV Baru</a>
-
-	<p>Cari Data TV :</p>
-	<form action="/tv/cariTV" method="GET">
-		<input type="text" class="form-control" name="cariTV" placeholder="Cari TV ...">
-		<input type="submit" value="CARI" class="btn btn-info">
-	</form>
+    <div class="row align-items-center mb-3">
+        <div class="col-md-6">
+            <a href="/tv/tambahTV" class="btn btn-primary"> + Tambah TV Baru</a>
+        </div>
+        <div class="col-md-6 d-flex justify-content-end">
+            <form action="/tv/cariTV" method="GET" class="d-flex w-75">
+                <input type="text" class="form-control me-2" name="cariTV" placeholder="Cari TV ...">
+                <input type="submit" value="CARI" class="btn btn-info">
+            </form>
+        </div>
+    </div>
     {{-- @if(session('sukses'))  --}}
 	<br/>
 
